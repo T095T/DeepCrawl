@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deep Research AI System</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        textarea { width: 100%; max-width: 600px; height: 100px; }
+        input[type="submit"] { margin-top: 10px; padding: 5px 10px; }
+        .section { margin-top: 20px; }
+        pre { background: #f4f4f4; padding: 10px; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>Deep Research AI System</h1>
+    <form method="POST">
+        <label for="query">Enter your research query:</label><br>
+        <textarea name="query" id="query" placeholder="e.g., What are the latest advancements in renewable energy?"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if query %}
+    <div class="section">
+        <h2>Query</h2>
+        <pre>{{ query }}</pre>
+    </div>
+    <div class="section">
+        <h2>Research Data</h2>
+        {% for data in research_data %}
+            <pre>{{ loop.index }}. {{ data[:100] }}...</pre>
+        {% endfor %}
+    </div>
+    <div class="section">
+        <h2>Draft Answer</h2>
+        <pre>{{ draft }}</pre>
+    </div>
+    <div class="section">
+        <h2>Messages</h2>
+        {% for msg in messages %}
+            <pre>- {{ msg }}</pre>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+</html>
